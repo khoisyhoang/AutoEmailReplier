@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Replies.AI",
+  "name": "Replies.Ai",
   "version": "1.0",
-  "description": "A simple Chrome extension with Tailwind.",
+  "description": "🚀 AI Powered Email Replier – A Chrome Extension that Writes Like You!",
   "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",

@@ -1,23 +1,29 @@
+import mainIcon from "../images/mainicon.png";
 const Header = () => {
 
     return (
-        <header class="header my-[24px]">
-            <div class="container mx-auto px-[16px]">
-                <div class="inner-wrap flex justify-between items-center gap-[40px]">
-                    <div class="inner-brand flex justify-between items-center gap-[16px]"><i class="fa-solid fa-bars text-[24px]  md:hidden"></i>
-                        <div class="inner-logo text-main text-[32px] font-[700]">28.SHOP</div>
+        <>
+        <header className="header bg-[#FCFEEF] border-b-2 ">
+            <div className="container mx-auto px-[16px]">
+                
+                <div className="inner-wrap sm:flex justify-between items-center gap-[40px]  sm:py-[28px] py-[10px] ">
+                    
+                    <div className="inner-brand flex sm:justify-between justify-center items-center sm:gap-[16px] gap-[2px] ">
+                        <div className="md:h-[50px] h-[30px]">
+                            <img className="w-full h-full bg-transparent" src={mainIcon} alt="main-logo" />
+                        </div>
+                        <div className="inner-logo text-main lg:text-[46px] md:text-[35px] text-[24px] font-[700]">replies.ai</div>
                     </div>
-                    <ul class="inner-menu md:flex hidden justify-between gap-[24px] font-[400]">
-                        <li class="inner-menu-item">Giới Thiệu</li>
-                        <li class="inner-menu-item">Sản Phẩm</li>
-                        <li class="inner-menu-item">Bài Viết</li>
-                        <li class="inner-menu-item">Liên Hệ</li>
+                    <ul className="inner-menu flex sm:justify-between justify-center md:gap-[35px] gap-[20px] font-[400] lg:text-[25px] md:text-[20px] text-[14px]">
+                        <li className="inner-menu-item"><a href="">About</a></li>
+                        <li className="inner-menu-item"><a href="">Our Team</a></li>
+                        <li className="inner-menu-item"><a href="">Demo</a></li>
                     </ul>
-                    <form class="inner-search hidden lg:flex items-center m-[0px] gap-[12px] flex-1 bg-[#F0F0F0] py-[12px] px-[16px] rounded-[62px] "><i class="fa-solid fa-magnifying-glass text-[#00000066]"></i><input class=" bg-transparent focus:outline-none " type="text" placeholder="Tìm kiếm sản phẩm..." /></form>
-                    <div class="inner-icon flex gap-[14px] text-[20px]"><i class="fa-solid fa-magnifying-glass md:hidden"></i><i class="fa-solid fa-cart-shopping"></i><i class="fa-regular fa-user"></i></div>
+
                 </div>
             </div>
         </header>
+        </>
     )
 }
 export default Header;

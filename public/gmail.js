@@ -121,9 +121,9 @@ function handleSignoutClick() {
 
 function base64UrlToBase64(base64Url) {
     return base64Url
-      .replace(/-/g, '+')  // Replace '-' with '+'
-      .replace(/_/g, '/')  // Replace '_' with '/'
-      .padEnd(base64Url.length + (4 - base64Url.length % 4) % 4, '=' ); // Add padding
+      .replace(/-/g, '+')
+      .replace(/_/g, '/')  
+      .padEnd(base64Url.length + (4 - base64Url.length % 4) % 4, '=' );
   }
 
 /**
@@ -158,10 +158,11 @@ async function listMessages() {
     const messageData = msgResponse.result;
     const headers = messageData.payload.headers;
     const subject = headers.find(header => header.name === 'Subject')?.value;
+    const id  = message.id;
 
     let body = '';
     if (messageData.payload.parts) {
-      // Check for parts (i.e., if it's a multipart email)
+      // Check for parts
       messageData.payload.parts.forEach(part => {
         if (part.mimeType === 'text/plain') {
           body = part.body.data;
@@ -177,7 +178,8 @@ async function listMessages() {
 
     return {
       subject: subject || 'No Subject',
-      body: body || "No body"
+      body: body || "No body",
+      id: id || "No id"
     };
   });
 

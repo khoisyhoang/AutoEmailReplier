@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { signInWithGoogle } from './authentication';  // Ensure you're importing the function correctly
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -8,10 +9,10 @@ const Registration = () => {
     confirmPassword: ''
   });
   const [error, setError] = useState('');
+  const [user, setUser] = useState(null); // To store user data from Google sign-in
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
   };
 
   const handleSubmit = (e) => {
@@ -23,12 +24,36 @@ const Registration = () => {
     setError('');
     console.log('Registration successful:', formData);
   };
-  
+
+  // Function to handle Google sign-in
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user, idToken } = await signInWithGoogle();
+      setUser(user);  // Store the signed-in user
+      console.log("Google User:", user);
+      console.log("Google ID Token:", idToken);
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#FCFEEF]">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+        {/* Google sign-in button */}
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full py-2 bg-blue-500 text-white rounded-lg mb-4"
+        >
+          Sign in with Google
+        </button>
+
+        {/* Display user name if signed in */}
+        {user && <p className="text-center text-green-500">Welcome, {user.displayName}</p>}
+
+        {/* Registration form */}
         
       </div>
     </div>

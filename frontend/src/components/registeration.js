@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { signInWithGoogle } from './authentication';  // Ensure you're importing the function correctly
+import React, { useState } from "react";
+import { signInWithGoogle } from "../utils/auth";
 
 const Registration = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
+  // const [error, setError] = useState("");
   const [user, setUser] = useState(null); // To store user data from Google sign-in
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match!');
-      return;
-    }
-    setError('');
-    console.log('Registration successful:', formData);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (formData.password !== formData.confirmPassword) {
+  //     setError("Passwords do not match!");
+  //     return;
+  //   }
+  //   setError("");
+  //   console.log("Registration successful:", formData);
+  // };
 
   // Function to handle Google sign-in
   const handleGoogleSignIn = async () => {
     try {
       const { user, idToken } = await signInWithGoogle();
-      setUser(user);  // Store the signed-in user
+      setUser(user); // Store the signed-in user
       console.log("Google User:", user);
       console.log("Google ID Token:", idToken);
     } catch (error) {
@@ -51,9 +51,12 @@ const Registration = () => {
         </button>
 
         {/* Display user name if signed in */}
-        {user && <p className="text-center text-green-500">Welcome, {user.displayName}</p>}
+        {user && (
+          <p className="text-center text-green-500">
+            Welcome, {user.displayName}
+          </p>
+        )}
         {/* Registration form */}
-        
       </div>
     </div>
   );

@@ -34,30 +34,41 @@ const verifyFirebaseToken = async (req, res, next) => {
 };
 
 app.get("/", async (req, res) => {
-   let data = await listEmails();
-   res.send(data);
+  let data = await listEmails();
+  res.send(data);
 });
 
 app.get("/auth/google", (req, res) => {
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: ["https://www.googleapis.com/auth/gmail.readonly"],
+    redirect_uri: process.env.REDIRECT_URI,
   });
   res.redirect(url);
 });
 
 app.get("/auth/google/callback", async (req, res) => {
   const code = req.query.code;
-  if (!code) return res.status(400).send("No code provided");
+  if (!code) {
+    return res.status(400).json({ error: "No authorization code provided" });
+  }
 
   try {
-    const { tokens } = await oauth2Client.getToken(code);
+    const { tokens } = await oauth2Client.getToken({
+      code,
+      redirect_uri: process.env.REDIRECT_URI, // 🔹 Ensure redirect_uri is passed
+    });
+
+    console.log("Tokens:", tokens); // 🔹 Debugging step
     res.json({
       accessToken: tokens.access_token,
       refreshToken: tokens.refresh_token,
     });
   } catch (error) {
-    console.error("Error exchanging code for token:", error);
+    console.error(
+      "Error exchanging code for token:",
+      error.response?.data || error
+    );
     res.status(500).json({ error: "Failed to get access token" });
   }
 });
@@ -111,13 +122,12 @@ const oauth2Client = new google.auth.OAuth2(
 // Initialize Gmail API with proper auth instance
 const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
-
 async function listEmails() {
   const res = await gmail.users.messages.list({
-    userId: 'me',
-    labelIds: ['INBOX'],
-    q: 'is:unread'
+    userId: "me",
+    labelIds: ["INBOX"],
+    q: "is:unread",
   });
-  // console.log(res.data.messages);  
+  // console.log(res.data.messages);
   return res;
 }

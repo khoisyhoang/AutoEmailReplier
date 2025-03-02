@@ -101,10 +101,6 @@ const Mail = () => {
                                     <span className="absolute left-2 top-1 w-1 h-0.5 bg-white rounded-full opacity-75 animate-ping"></span>
                                     <span className="absolute right-2 bottom-1 w-1 h-0.5 bg-white rounded-full opacity-75 animate-ping"></span>
                                 </button>
-
-
-
-
                             </div>
 
                         </div>

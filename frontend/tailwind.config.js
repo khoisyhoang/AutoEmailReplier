@@ -2,6 +2,8 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    'node_modules/daisyui/dist/**/*.js',
+    'node_modules/react-daisyui/dist/**/*.js',
   ],
   theme: {
     extend: {},
@@ -13,5 +15,5 @@ module.exports = {
         '2xl': '1272px', 
       }
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

@@ -4,9 +4,20 @@ import { Range } from 'react-daisyui'
 const Mail = () => {
     let [isEdit, setIsEdit] = useState(0);
     let [sliderValue, setSliderValue] = useState(50);
+    let [textContent, setTextContent] = useState("You're welcome to make a prompt");
+
     const getSliderValue = (event) => {
         setSliderValue(event.target.value);
     }
+    
+    const handleBlur = (event) => {
+        setTextContent(event.target.value);
+        setIsEdit(0);
+    }
+    const handleClick = (event) => {
+        setIsEdit(1);
+    }
+    
     return (
         <>
             <div className="mail pt-[50px]">
@@ -35,9 +46,33 @@ const Mail = () => {
                     </div>
                     <div className="model p-[20px] bg-[#C7DB9C] flex-1 rounded-[15px]">
                         <h2 className="text-[30px] font-[700] mb-[20px]">AI suggestions</h2>
-                        <div className="md:text-[24px] text-[18px] bg-white rounded-[20px] p-[10px]">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                        </div>
+                        {
+                            isEdit ?    
+                            <textarea 
+                            className="mail__content bg-[#F8F3D9] text-[24px] p-[20px] rounded-[20px] mt-[8px]"
+                            // onFocus={(event) => handleFocus(event)}
+                            onBlur={(event) => handleBlur(event)}
+                            >
+                                {textContent}
+                            </textarea>
+                            :
+                            <div 
+                                className="mail__content bg-[#F8F3D9] md:text-[24px] text-[18px] p-[10px] rounded-[20px] mt-[8px] break-words h-[420px] line-clamp-11 overflow-hidden"
+                                style={{
+                                    height: "400px",
+                                    overflow: "hidden",
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 11,
+                                    WebkitBoxOrient: "vertical",
+                                    position: "relative"
+                                }}
+
+                                onClick={(event) => handleClick(event)}
+                            >
+                                {textContent}
+                            </div>
+                        }
+
                         <div className="slider">
 
                             <div className="mt-[20px] w-[60%] mx-auto">

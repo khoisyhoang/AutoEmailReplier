@@ -52,7 +52,6 @@ const Registration = () => {
 
         {/* Display user name if signed in */}
         {user && <p className="text-center text-green-500">Welcome, {user.displayName}</p>}
-
         {/* Registration form */}
         
       </div>

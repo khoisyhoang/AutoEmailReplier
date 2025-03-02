@@ -8,6 +8,30 @@ import Home from "./components/home";
 import GoogleAuthCallback from "./GoogleAuthCallback";
 
 function App() {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    return (
+        <Router>
+            <Routes>
+                <Route path="/registration" element={<Registration />} />
+                <Route
+                    path="/home"
+                    element={
+                      <>
+                        <Header />
+                        <Mail />
+                      </>
+                    }
+                  />
+            </Routes>
+        </Router>
+    );
+=======
+=======
+>>>>>>> 2878a44aff7db039c1eae70763a0f2183e1d6b99
+>>>>>>> Stashed changes
   return (
     <Router>
       <Routes>
@@ -26,6 +50,13 @@ function App() {
       </Routes>
     </Router>
   );
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> 2878a44aff7db039c1eae70763a0f2183e1d6b99
+=======
+>>>>>>> 2878a44aff7db039c1eae70763a0f2183e1d6b99
+>>>>>>> Stashed changes
 }
 
 export default App;

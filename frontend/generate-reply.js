@@ -2,7 +2,14 @@ async function testGenerateReply() {
     const testEmails = [
         {
             subject: "Project Deadline Reminder",
-            body: "Hi, just a reminder that the project deadline is next Friday. Let me know if you need any help!"
+            body: `Dear Ted,
+
+            I hope this email finds you well. I wanted to follow up on my application for the Software Engineer position at Theranos, submitted on 2/25/25. I am very excited about the opportunity to contribute to your team and would love to learn more about the hiring process.
+
+            Please let me know if you need any additional information from me. I look forward to the possibility of discussing my qualifications further. Thank you for your time and consideration.
+
+            Best regards,
+            Tom`
         },
         {
             subject: "Meeting Reschedule Request",
@@ -27,18 +34,20 @@ async function testGenerateReply() {
         body: "Hello, I am interested in your software and would like to schedule a demo. Please let me know your availability. Thanks!"
     };
 
-    const apiKey = "";  // Replace with actual API key
+    const apiKey = "";  // Replace with actual API key   
     const formality = "professional";
 
     // Format testEmails to use them as a writing style reference
     let emailHistory = testEmails.map((email, index) => 
         `Email ${index + 1}:\nSubject: ${email.subject}\nBody: ${email.body}`
     ).join("\n\n");
+    let name = "Ted";
 
     const messages = [
         { role: "system", content: `You are an AI assistant that generates professional email responses. 
         Use the following past emails as a reference to mimic the user's writing style.` },
-        { role: "user", content: `Here are my previous emails:\n\n${emailHistory}\n\nBased on my past emails, generate a ${formality} response to this new email:\n\nSubject: ${newEmail.subject}\nBody: ${newEmail.body}` }
+        // { role: "user", content: `Here are my previous emails:\n\n${emailHistory}\n\nBased on my past emails, generate a ${formality} response to this new email:\n\nSubject: ${newEmail.subject}\nBody: ${newEmail.body}` }
+        { role: "user", content: `You are responding for ${name}, here are my previous emails: ${emailHistory}, mimic the style as close as possible and write a response to the previous email.`}
     ];
 
     try {
@@ -64,6 +73,7 @@ async function testGenerateReply() {
         }
 
         console.log("AI-Generated Reply:\n", data.choices[0].message.content);
+        return data.choices[0].message.content;
     } catch (error) {
         console.error("Error:", error);
     }

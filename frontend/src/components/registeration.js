@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { signInWithGoogle } from "../utils/auth";
+import LoginWithGoogle from "./LoginWithGoogle";
 
 const Registration = () => {
   // const [formData, setFormData] = useState({
@@ -43,12 +44,7 @@ const Registration = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
 
         {/* Google sign-in button */}
-        <button
-          onClick={handleGoogleSignIn}
-          className="w-full py-2 bg-blue-500 text-white rounded-lg mb-4"
-        >
-          Sign in with Google
-        </button>
+        <LoginWithGoogle />
 
         {/* Display user name if signed in */}
         {user && (

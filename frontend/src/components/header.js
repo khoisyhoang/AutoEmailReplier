@@ -2,7 +2,7 @@ import mainIcon from "../images/mainicon.png";
 const Header = () => {
     return (
         <>
-        <header className="header bg-[#FCFEEF] border-b-2 ">
+        <header className="header bg-[#FCFEEF] border-b-4 border-black">
             <div className="container mx-auto px-[16px]">
                 
                 <div className="inner-wrap sm:flex justify-between items-center gap-[40px]  sm:py-[28px] py-[10px] ">

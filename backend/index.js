@@ -33,8 +33,9 @@ const verifyFirebaseToken = async (req, res, next) => {
   }
 };
 
-app.get("/", (req, res) => {
-  res.send("cock");
+app.get("/", async (req, res) => {
+   let data = await listEmails();
+   res.send(data);
 });
 
 app.get("/auth/google", (req, res) => {
@@ -98,3 +99,25 @@ const fetchEmails = async (idToken, accessToken) => {
 app.listen(8000, () => {
   console.log("backend now running!");
 });
+
+const { OAuth2Client } = require("google-auth-library");
+
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
+);
+
+// Initialize Gmail API with proper auth instance
+const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+
+
+async function listEmails() {
+  const res = await gmail.users.messages.list({
+    userId: 'me',
+    labelIds: ['INBOX'],
+    q: 'is:unread'
+  });
+  // console.log(res.data.messages);  
+  return res;
+}

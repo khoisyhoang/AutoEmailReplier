@@ -28,7 +28,7 @@ const Mail = () => {
                 }
                 <div className="buttons">
                     <a 
-                        class="button bg-[#578FCA] text-[30px] justify-center mx-auto md:inline-flex flex py-[24px] px-[70px] rounded-[62px] xl:my-[50px] my-[30px]" href="#" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">Send
+                        class="button bg-[#4963DD] text-[30px] text-white justify-center mx-auto md:inline-flex flex py-[24px] px-[70px] rounded-[62px] xl:my-[50px] my-[30px]" href="#" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">Send
                     </a>
                 </div>
             </div>

@@ -8,8 +8,11 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "daisyui": "^4.12.10",
     "firebase": "^11.4.0",
+=======
+>>>>>>> 7c4f9185b3e8cf1212ead1a0d3c1c06595e700a9
     "nodemon": "^3.1.9",
     "react": "^19.0.0",
     "react-daisyui": "^5.0.5",

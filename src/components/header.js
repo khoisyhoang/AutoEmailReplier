@@ -1,6 +1,5 @@
 import mainIcon from "../images/mainicon.png";
 const Header = () => {
-
     return (
         <>
         <header className="header bg-[#FCFEEF] border-b-2 ">

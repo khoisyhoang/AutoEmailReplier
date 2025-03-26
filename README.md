@@ -5,4 +5,5 @@ We used openAI API key, which costs money so we won't deploy online until we fin
 # Tech Stacks
 The front end is built entirely by React. Then we incorporate with openAI key to fetch data.
 
-![alt text]([http://url/to/img.png](https://res.cloudinary.com/dcvfbyxwj/image/upload/v1742960907/repliesai_skztrk.png))
+![alt text](https://res.cloudinary.com/dcvfbyxwj/image/upload/v1742960907/repliesai_skztrk.png)
+
